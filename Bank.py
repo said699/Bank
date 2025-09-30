@@ -3,26 +3,35 @@ class Bank:
         self.check = check
 
     def show_check(self):
-        print(f'Нынешнее состояние вашего счёта: {self.check}')
+        print(f'Нынешнее состояние вашего счёта: {self.check}\n')
 
     def account_replenishment(self):
-        sum_to_addition = int(input('Введите сумму которую хотите закинуть на счёт: '))
-        self.check += sum_to_addition
+        try:
+            sum_to_addition = int(input('Введите сумму которую хотите закинуть на счёт: '))
+            self.check += sum_to_addition
+        except ValueError:
+            print('Не верный ввод!\n')
 
     def withdrawal_account(self):
-        sum_to_removale = int(input('Введите сумму которую хотите снять: '))
-        if sum_to_removale > self.check:
-            print('На счету недостаточно средств!')
+        try:
+            sum_to_removale = int(input('Введите сумму которую хотите снять: '))
+            if sum_to_removale > self.check:
+                print('На счету недостаточно средств!\n')
 
-        elif sum_to_removale == self.check:
-            choice = input('Вы точно хотите снять все средства: ').lower()
-            if choice == 'да':
+            elif sum_to_removale == self.check:
+                choice = input('Вы точно хотите снять все средства: ').lower()
+                if choice == 'да':
+                    self.check -= sum_to_removale
+                elif choice == 'нет':
+                    print('Как пожелаеете\n')
+                else:
+                    print('Не известная команда!\n')
+
+            elif sum_to_removale <= self.check:
                 self.check -= sum_to_removale
-            elif choice == 'нет':
-                print('Как пожелаеете')
 
-        elif sum_to_removale <= self.check:
-            self.check -= sum_to_removale
+        except ValueError:
+            print('Не верный ввод!\n')
 
     def __str__(self):
         return 'Это класс Bank!'
@@ -39,6 +48,7 @@ while True:
     elif user_choice == 'вывод':
         user_check.show_check()
     elif user_choice == 'выход':
-        break    
+        print('Досвидания')
+        break
     else:
-        print('Не извесная операция!')
+        print('Не извесная операция!\n')

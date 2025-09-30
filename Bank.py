@@ -23,15 +23,15 @@ class Bank:
 user_check = Bank(0)
 
 while True:
-    user_choice = input('Введите операцию (Вывод/Выход/Снятие/Пополнение): ')
+    user_choice = input('Введите операцию (Вывод/Выход/Снятие/Пополнение): ').lower()
 
-    if user_choice == 'Снятие' or 'снятие':
+    if user_choice == 'снятие':
         user_check.withdrawal_account()
-    elif user_choice == 'Пополнение' or 'пополнение':
+    elif user_choice == 'пополнение':
         user_check.account_replenishment()
-    elif user_choice == 'Вывод' or 'вывод':
+    elif user_choice == 'вывод':
         user_check.show_check()
-    elif user_choice == 'Выход' or 'выход':
+    elif user_choice == 'выход':
         break    
     else:
         print('Не извесная операция!')

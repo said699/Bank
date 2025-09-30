@@ -14,6 +14,13 @@ class Bank:
         if sum_to_removale > self.check:
             print('На счету недостаточно средств!')
 
+        elif sum_to_removale == self.check:
+            choice = input('Вы точно хотите снять все средства: ').lower()
+            if choice == 'да':
+                self.check -= sum_to_removale
+            elif choice == 'нет':
+                print('Как пожелаеете')
+
         elif sum_to_removale <= self.check:
             self.check -= sum_to_removale
 
